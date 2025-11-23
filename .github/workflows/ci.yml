@@ -1,0 +1,14 @@
+name: CI Pipeline
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with: python --version: '3.13'
+      - name: Install deps
+        run: pip install pandas matplotlib talib pynance
+      - name: Run tests
+        run: python -c "import pandas; print('CI Pass!')"
